@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modulo 6.4: Documento de Arquitetura | GIPM Master</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    html:not(.dark) body { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%); }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎓</span>
+            <span class="font-bold text-lg hidden sm:inline">GIPM Master</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span><span class="hidden sm:inline">O Metodo</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span><span class="hidden sm:inline">Avancado</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span><span class="hidden sm:inline">NotebookLMX</span>
+          </a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors">
+            <span class="sm:hidden">T5</span><span class="hidden sm:inline">Pratico</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10">
+            <span class="sm:hidden">T6</span>
+            <span class="hidden sm:inline">Templates</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Breadcrumb -->
+  <div class="bg-dark-800/50 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+      <nav class="flex items-center space-x-2 text-sm">
+        <a href="../../index.html" class="text-neutral-400 hover:text-neutral-300">Inicio</a>
+        <span class="text-neutral-600">/</span>
+        <a href="index.html" class="text-neutral-400 hover:text-rose-400">Trilha 6: Templates</a>
+        <span class="text-neutral-600">/</span>
+        <span class="text-rose-400">Modulo 6.4</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-rose-500/20 text-rose-400 text-xs font-semibold rounded-full mb-4">MODULO 6.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🏗️ Documento de Arquitetura</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">
+        O blueprint tecnico do projeto. Define stack, padroes, modelos de dados, APIs e regras que toda IA deve seguir.
+      </p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">8</div>
+          <div class="text-xs text-neutral-400">Topicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">~60</div>
+          <div class="text-xs text-neutral-400">Minutos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">Avancado</div>
+          <div class="text-xs text-neutral-400">Nivel</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">Template</div>
+          <div class="text-xs text-neutral-400">Tipo</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Download Section -->
+    <div class="bg-gradient-to-br from-green-900/30 to-dark-800 rounded-2xl border border-green-500/30 p-6 sm:p-8 mb-12">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-bold text-green-400 mb-2">Download do Template</h3>
+          <p class="text-neutral-400">Template completo de Arquitetura em Markdown. Inclui stack, padroes, modelos e especificacoes de API.</p>
+        </div>
+        <a href="templates/architecture.md" download class="flex items-center gap-2 px-8 py-4 bg-green-600 hover:bg-green-500 text-white rounded-xl transition-colors font-bold text-lg shadow-lg shadow-green-900/30">
+          <span class="text-xl">⬇️</span>
+          <span>Download .md</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Topico 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📐 Arquitetura como Blueprint</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        O documento de arquitetura e o <strong class="text-rose-400">blueprint tecnico completo</strong> do projeto. Cada decisao de tecnologia, cada padrao, cada API esta aqui. Desenvolvedores e IAs consultam este documento para garantir consistencia.
+      </p>
+      <div class="bg-gradient-to-br from-rose-900/30 to-dark-800 rounded-xl border border-rose-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">O que o Documento Define</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Stack tecnologico com versoes exatas</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Padroes arquiteturais obrigatorios</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Modelos de dados e relacionamentos</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Especificacoes de API (OpenAPI)</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Estrutura de pastas e organizacao</span>
+          </div>
+          <div class="flex items-start space-x-3">
+            <span class="text-rose-400 mt-1">•</span>
+            <span class="text-neutral-300">Regras de seguranca e validacao</span>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Por que isso importa para IA</h3>
+        <p class="text-neutral-300">Quando a IA gera codigo, ela DEVE seguir este blueprint. Sem ele, cada geracao e uma loteria de padroes inconsistentes.</p>
+      </div>
+    </section>
+
+    <!-- Topico 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📦 Tech Stack Table</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Liste <strong class="text-rose-400">TODAS as tecnologias com versoes especificas</strong>. "Node.js" nao e suficiente. "Node.js 20.11.0 LTS" e. Versoes exatas evitam surpresas de compatibilidade.
+      </p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6 overflow-x-auto">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">Exemplo de Tech Stack Table</h3>
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-dark-600">
+              <th class="text-left py-2 text-neutral-400">Camada</th>
+              <th class="text-left py-2 text-neutral-400">Tecnologia</th>
+              <th class="text-left py-2 text-neutral-400">Versao</th>
+              <th class="text-left py-2 text-neutral-400">Justificativa</th>
+            </tr>
+          </thead>
+          <tbody class="text-neutral-300">
+            <tr class="border-b border-dark-700">
+              <td class="py-2">Runtime</td>
+              <td class="py-2 text-rose-400">Node.js</td>
+              <td class="py-2 font-mono text-xs">20.11.0 LTS</td>
+              <td class="py-2 text-xs text-neutral-400">Suporte longo prazo, estavel</td>
+            </tr>
+            <tr class="border-b border-dark-700">
+              <td class="py-2">Framework</td>
+              <td class="py-2 text-rose-400">Next.js</td>
+              <td class="py-2 font-mono text-xs">14.1.0</td>
+              <td class="py-2 text-xs text-neutral-400">App Router, Server Components</td>
+            </tr>
+            <tr class="border-b border-dark-700">
+              <td class="py-2">Database</td>
+              <td class="py-2 text-rose-400">PostgreSQL</td>
+              <td class="py-2 font-mono text-xs">16.1</td>
+              <td class="py-2 text-xs text-neutral-400">JSONB, indices parciais</td>
+            </tr>
+            <tr>
+              <td class="py-2">ORM</td>
+              <td class="py-2 text-rose-400">Prisma</td>
+              <td class="py-2 font-mono text-xs">5.8.0</td>
+              <td class="py-2 text-xs text-neutral-400">Type-safe, migrations</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+        <h3 class="text-lg font-semibold text-red-400 mb-3">⚠️ Evite</h3>
+        <p class="text-neutral-300">"Use a versao mais recente" - isso cria inconsistencia entre ambientes. Sempre fixe versoes.</p>
+      </div>
+    </section>
+
+    <!-- Topico 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🧱 Padroes Arquiteturais</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Documente os <strong class="text-rose-400">padroes escolhidos com justificativa</strong>. Repository Pattern, Dependency Injection, CQRS - estes padroes sao LEI para a IA seguir.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Repository Pattern</h4>
+          <p class="text-sm text-neutral-400 mb-2">Abstrai acesso a dados em interfaces</p>
+          <p class="text-xs text-neutral-500">Justificativa: Facilita testes e troca de ORM</p>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Dependency Injection</h4>
+          <p class="text-sm text-neutral-400 mb-2">Injeta dependencias via construtor</p>
+          <p class="text-xs text-neutral-500">Justificativa: Testabilidade e desacoplamento</p>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Clean Architecture</h4>
+          <p class="text-sm text-neutral-400 mb-2">Camadas com dependencias unidirecionais</p>
+          <p class="text-xs text-neutral-500">Justificativa: Separacao de responsabilidades</p>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Event-Driven</h4>
+          <p class="text-sm text-neutral-400 mb-2">Comunicacao via eventos assincronos</p>
+          <p class="text-xs text-neutral-500">Justificativa: Escalabilidade e desacoplamento</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topico 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🗃️ Modelos de Dados</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Defina <strong class="text-rose-400">entidades, atributos e relacionamentos</strong>. Use diagramas Mermaid para visualizacao. Este modelo guia a criacao de banco de dados e APIs.
+      </p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">Estrutura de Entidade</h3>
+        <div class="bg-dark-700/50 p-4 rounded-lg font-mono text-sm mb-4">
+          <div class="text-neutral-400 mb-2">// User Entity</div>
+          <div class="text-neutral-300">
+            <span class="text-rose-400">id</span>: UUID (PK)<br>
+            <span class="text-rose-400">email</span>: string (unique, indexed)<br>
+            <span class="text-rose-400">password_hash</span>: string<br>
+            <span class="text-rose-400">created_at</span>: timestamp<br>
+            <span class="text-rose-400">updated_at</span>: timestamp
+          </div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-dark-700/50 p-4 rounded-lg">
+            <h5 class="font-semibold text-neutral-200 mb-2">Chaves</h5>
+            <p class="text-sm text-neutral-400">PK, FK, indices</p>
+          </div>
+          <div class="bg-dark-700/50 p-4 rounded-lg">
+            <h5 class="font-semibold text-neutral-200 mb-2">Tipos</h5>
+            <p class="text-sm text-neutral-400">UUID, string, int, timestamp</p>
+          </div>
+          <div class="bg-dark-700/50 p-4 rounded-lg">
+            <h5 class="font-semibold text-neutral-200 mb-2">Constraints</h5>
+            <p class="text-sm text-neutral-400">NOT NULL, UNIQUE, CHECK</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topico 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🔌 API Specification</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Documente endpoints em <strong class="text-rose-400">formato OpenAPI/Swagger</strong>. Request/response schemas, codigos de erro, autenticacao. A IA usara isso para gerar codigo consistente.
+      </p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">Exemplo de Endpoint</h3>
+        <div class="bg-dark-700/50 p-4 rounded-lg font-mono text-sm">
+          <div class="flex items-center space-x-2 mb-3">
+            <span class="px-2 py-1 bg-green-500/20 text-green-400 rounded text-xs">POST</span>
+            <span class="text-neutral-300">/api/v1/users</span>
+          </div>
+          <div class="text-neutral-400 text-xs mb-2">Request Body:</div>
+          <div class="text-neutral-300 pl-4 mb-3">
+            {"{ email: string, password: string }"}
+          </div>
+          <div class="text-neutral-400 text-xs mb-2">Responses:</div>
+          <div class="pl-4 space-y-1">
+            <div><span class="text-green-400">201</span>: User created successfully</div>
+            <div><span class="text-amber-400">400</span>: Validation error</div>
+            <div><span class="text-red-400">409</span>: Email already exists</div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6">
+        <h3 class="text-lg font-semibold text-primary mb-3">💡 Dica</h3>
+        <p class="text-neutral-300">Use ferramentas como Swagger UI para visualizar e testar sua API spec antes de implementar.</p>
+      </div>
+    </section>
+
+    <!-- Topico 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📁 Estrutura de Pastas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Defina <strong class="text-rose-400">onde cada tipo de arquivo vai</strong>. Controllers em /controllers, services em /services, etc. Consistencia e auditabilidade dependem disso.
+      </p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">Estrutura Tipica</h3>
+        <div class="bg-dark-700/50 p-4 rounded-lg font-mono text-sm text-neutral-300">
+          <pre>
+src/
+├── app/                  # Routes e pages (Next.js)
+├── components/           # React components
+│   ├── ui/              # Componentes genericos
+│   └── features/        # Componentes de dominio
+├── lib/                  # Bibliotecas e utilidades
+├── services/            # Business logic
+├── repositories/        # Data access layer
+├── types/               # TypeScript types/interfaces
+├── hooks/               # Custom React hooks
+└── utils/               # Funcoes auxiliares</pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topico 7 -->
+    <section id="topico-7" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">7</span>
+        <h2 class="text-2xl font-bold">🔒 Seguranca</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Documente estrategias de <strong class="text-rose-400">validacao, autenticacao, autorizacao e gestao de secrets</strong>. Seguranca nao e opcional.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Autenticacao</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li>• JWT com refresh tokens</li>
+            <li>• Expiracao: 15min access, 7d refresh</li>
+            <li>• HTTP-only cookies para tokens</li>
+          </ul>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Autorizacao</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li>• RBAC (Role-Based Access Control)</li>
+            <li>• Middleware de verificacao</li>
+            <li>• Permissoes granulares</li>
+          </ul>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Validacao</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li>• Zod para schema validation</li>
+            <li>• Sanitizacao de inputs</li>
+            <li>• Rate limiting em endpoints</li>
+          </ul>
+        </div>
+        <div class="bg-dark-700/50 rounded-xl p-6 border border-dark-600">
+          <h4 class="font-semibold text-rose-400 mb-3">Secrets</h4>
+          <ul class="space-y-2 text-sm text-neutral-400">
+            <li>• .env para desenvolvimento</li>
+            <li>• Vault/KMS para producao</li>
+            <li>• Nunca commitar secrets</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Topico 8 -->
+    <section id="topico-8" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xl">8</span>
+        <h2 class="text-2xl font-bold">📝 Padrao de Codigo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">
+        Regras criticas que a <strong class="text-rose-400">IA DEVE seguir</strong>. "Nunca use any", "Sempre valide input", "Use prepared statements". Seja especifico e inequivoco.
+      </p>
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-rose-400 mb-4">Regras Obrigatorias</h3>
+        <div class="space-y-3">
+          <div class="flex items-start space-x-3 p-3 bg-red-900/20 rounded-lg border border-red-500/30">
+            <span class="text-red-400 font-bold">NUNCA</span>
+            <span class="text-neutral-300">Use 'any' em TypeScript - sempre defina tipos</span>
+          </div>
+          <div class="flex items-start space-x-3 p-3 bg-red-900/20 rounded-lg border border-red-500/30">
+            <span class="text-red-400 font-bold">NUNCA</span>
+            <span class="text-neutral-300">Concatene strings em queries SQL - use prepared statements</span>
+          </div>
+          <div class="flex items-start space-x-3 p-3 bg-green-900/20 rounded-lg border border-green-500/30">
+            <span class="text-green-400 font-bold">SEMPRE</span>
+            <span class="text-neutral-300">Valide todos os inputs antes de processar</span>
+          </div>
+          <div class="flex items-start space-x-3 p-3 bg-green-900/20 rounded-lg border border-green-500/30">
+            <span class="text-green-400 font-bold">SEMPRE</span>
+            <span class="text-neutral-300">Use async/await em vez de callbacks</span>
+          </div>
+          <div class="flex items-start space-x-3 p-3 bg-green-900/20 rounded-lg border border-green-500/30">
+            <span class="text-green-400 font-bold">SEMPRE</span>
+            <span class="text-neutral-300">Trate erros com try/catch e logging apropriado</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resumo -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-rose-900/40 via-dark-800 to-dark-800 rounded-xl border border-rose-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6">📝 Resumo do Modulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span><strong class="text-white">Blueprint Tecnico</strong> - Documento que governa toda geracao de codigo</span></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span><strong class="text-white">Tech Stack</strong> - Versoes exatas de todas as tecnologias</span></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span><strong class="text-white">Padroes</strong> - Repository, DI, Clean Architecture com justificativas</span></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span><strong class="text-white">API Spec</strong> - Endpoints documentados em formato OpenAPI</span></div>
+          <div class="flex items-start space-x-3"><span class="text-rose-400 mt-1">✓</span><span><strong class="text-white">Regras de Codigo</strong> - NUNCA/SEMPRE que a IA deve seguir</span></div>
+        </div>
+
+        <!-- Download Button in Summary -->
+        <div class="bg-green-900/30 rounded-xl p-4 border border-green-500/30 mb-6">
+          <div class="flex items-center justify-between">
+            <span class="text-green-400 font-semibold">Pronto para arquitetar?</span>
+            <a href="templates/architecture.md" download class="flex items-center gap-2 px-6 py-2 bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors font-semibold">
+              <span>⬇️</span>
+              <span>Baixar Template</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-6-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← PRD</a>
+          <a href="modulo-6-5.html" class="flex-1 text-center px-6 py-3 bg-rose-600 text-white rounded-lg font-semibold hover:bg-rose-500 transition-colors">Proximo: User Stories →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-dark-800 border-t border-dark-600 py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-neutral-400 text-sm mb-2">🎓 GIPM Master - Metodo de Projetos com IA Governada</p>
+      <p class="text-neutral-500 text-xs">© 2026 <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a>. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trilha 6: Templates e Downloads | GIPM Master</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    html:not(.dark) body { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%); }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎓</span>
+            <span class="font-bold text-lg hidden sm:inline">GIPM Master</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors">
+            <span class="sm:hidden">T1</span>
+            <span class="hidden sm:inline">Fundamentos</span>
+          </a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors">
+            <span class="sm:hidden">T2</span>
+            <span class="hidden sm:inline">O Metodo</span>
+          </a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors">
+            <span class="sm:hidden">T3</span>
+            <span class="hidden sm:inline">Avancado</span>
+          </a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors">
+            <span class="sm:hidden">T4</span>
+            <span class="hidden sm:inline">NotebookLMX</span>
+          </a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors">
+            <span class="sm:hidden">T5</span>
+            <span class="hidden sm:inline">Pratico</span>
+          </a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-rose-400 bg-rose-500/10">
+            <span class="sm:hidden">T6</span>
+            <span class="hidden sm:inline">Templates</span>
+          </a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-rose-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-rose-500/20 text-rose-400 text-xs font-semibold rounded-full mb-4">TRILHA 6</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📥 Templates e Downloads</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Documentos padrao, templates e prompts para iniciar seu projeto GIPM. Baixe, personalize e comece a construir com governanca.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">7</div>
+          <div class="text-xs text-neutral-400">Modulos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">6</div>
+          <div class="text-xs text-neutral-400">Templates</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">48</div>
+          <div class="text-xs text-neutral-400">Topicos</div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600">
+          <div class="text-xl font-bold text-rose-400">.md</div>
+          <div class="text-xs text-neutral-400">Formato</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- NAVEGACAO RAPIDA -->
+    <section class="mb-12">
+      <h2 class="text-xl font-bold mb-6 text-neutral-300">Navegacao Rapida</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="modulo-6-1.html" class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.1</span>
+            <span class="text-xs text-neutral-500">6 topicos</span>
+          </div>
+          <h3 class="font-semibold group-hover:text-rose-400 transition-colors">📋 Visao Geral dos Templates</h3>
+        </a>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.2</span>
+            <a href="templates/project-brief.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-2.html" class="font-semibold group-hover:text-rose-400 transition-colors block">📝 Project Brief</a>
+        </div>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.3</span>
+            <a href="templates/prd.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-3.html" class="font-semibold group-hover:text-rose-400 transition-colors block">📊 PRD - Requisitos</a>
+        </div>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.4</span>
+            <a href="templates/architecture.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-4.html" class="font-semibold group-hover:text-rose-400 transition-colors block">🏗️ Arquitetura</a>
+        </div>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.5</span>
+            <a href="templates/user-story.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-5.html" class="font-semibold group-hover:text-rose-400 transition-colors block">📖 User Stories</a>
+        </div>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.6</span>
+            <a href="templates/qa-gate.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-6.html" class="font-semibold group-hover:text-rose-400 transition-colors block">✅ QA Gate</a>
+        </div>
+        <div class="group bg-dark-800 rounded-xl border border-dark-600 p-4 hover:border-rose-500/50 hover:bg-dark-700/50 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-rose-400 font-bold">6.7</span>
+            <a href="templates/prompts-ia.md" download class="text-xs text-green-400 hover:text-green-300 font-medium">⬇️ Download</a>
+          </div>
+          <a href="modulo-6-7.html" class="font-semibold group-hover:text-rose-400 transition-colors block">🤖 Prompts para IA</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIVISOR -->
+    <div class="border-t border-dark-600 mb-12 pt-8">
+      <h2 class="text-xl font-bold mb-6 text-neutral-300">Conteudo Detalhado</h2>
+    </div>
+
+    <!-- Modulo 6.1 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.1</span>
+          <span class="text-xs text-neutral-500">6 topicos</span>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📋 Visao Geral dos Templates</h3>
+        <p class="text-neutral-400 text-sm">Entenda o fluxo de documentacao do GIPM e como cada template se conecta.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📄</span>
+            <div><span class="font-medium">Por que Documentar?</span><span class="text-neutral-500 text-sm ml-2">- Governanca</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A documentacao no GIPM nao e burocracia - e governanca. Cada documento cria um ponto de auditoria, uma decisao registrada que pode ser revisitada.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem documentacao, nao ha como rastrear por que decisoes foram tomadas. Quando algo quebra, voce precisa do historico.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Governanca documental, auditoria, rastreabilidade, decisoes registradas, compliance.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">O Fluxo de Documentos</span><span class="text-neutral-500 text-sm ml-2">- Ordem</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A ordem ideal: 1) Project Brief, 2) PRD, 3) Arquitetura, 4) User Stories, 5) QA Gate. Cada documento alimenta o proximo na cadeia.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Seguir a ordem correta evita retrabalho. Arquitetura sem PRD e chute. Stories sem arquitetura sao incompletas.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Fluxo documental, dependencias, cadeia de valor, sequenciamento, input-output.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Project Brief vs PRD</span><span class="text-neutral-500 text-sm ml-2">- Diferenca</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Brief e estrategico (por que e o que em alto nivel). PRD e tatico (requisitos detalhados e especificos). Nunca pule o Brief.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Confundir os dois leva a PRDs sem contexto estrategico ou Briefs com detalhes tecnicos desnecessarios.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Estrategia vs tatica, niveis de abstracao, escopo, visao, requisitos.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🏗️</span>
+            <div><span class="font-medium">Arquitetura como Contrato</span><span class="text-neutral-500 text-sm ml-2">- Padroes</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O documento de arquitetura e um contrato entre o time e a IA. Define padroes obrigatorios, stack tecnologico e estrutura.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Se a IA gerar codigo fora dos padroes definidos, o documento permite identificar a violacao e corrigir.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Contrato arquitetural, padroes, stack, estrutura de projeto, regras tecnicas.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📖</span>
+            <div><span class="font-medium">Stories para IA</span><span class="text-neutral-500 text-sm ml-2">- Especificidade</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Stories GIPM sao escritas para agentes de IA. Precisam ser atomicas, especificas, com criterios de aceitacao testaveis.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Stories vagas geram codigo vago. A IA nao tem contexto implicito como humanos - precisa de tudo explicito.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Atomicidade, criterios de aceitacao, especificidade, contexto explicito, testabilidade.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔗</span>
+            <div><span class="font-medium">Interdependencias</span><span class="text-neutral-500 text-sm ml-2">- Rastreabilidade</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Cada documento referencia os anteriores. Arquitetura cita PRD. Stories citam arquitetura. QA valida stories. E uma cadeia.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Essa cadeia cria rastreabilidade total - do requisito de negocio ao codigo, passando por todas as decisoes.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Rastreabilidade, referencias cruzadas, cadeia de evidencias, auditoria end-to-end.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-6-1.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.2 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.2</span>
+          <a href="templates/project-brief.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📝 Project Brief</h3>
+        <p class="text-neutral-400 text-sm">O documento fundacional que define visao, problema, usuarios e escopo do projeto.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">O que e o Project Brief</span><span class="text-neutral-500 text-sm ml-2">- Definicao</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Documento que captura a essencia do projeto: problema, solucao, usuarios, restricoes. O "elevator pitch" expandido.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">E o ponto de partida de tudo. Sem Brief claro, todo o resto fica sem direcao.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Visao, problema, solucao, personas, escopo, restricoes, premissas.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">✍️</span>
+            <div><span class="font-medium">Resumo Executivo</span><span class="text-neutral-500 text-sm ml-2">- 2-3 frases</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">2-3 frases que qualquer pessoa pode ler e entender o projeto. Se nao consegue resumir, nao entendeu ainda.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Forcavoce a ter clareza. Tambem facilita comunicacao com stakeholders que nao vao ler o documento todo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Sintese, comunicacao executiva, clareza, pitch.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Declaracao do Problema</span><span class="text-neutral-500 text-sm ml-2">- Quantificavel</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Descreva o problema de forma mensuravel. "Usuarios perdem tempo" e vago. "2h/dia em tarefas manuais" e especifico.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Problema mensuravel permite medir sucesso. Sem numeros, como saber se a solucao funcionou?</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Metricas, quantificacao, baseline, impacto mensuravel, KPIs.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">👥</span>
+            <div><span class="font-medium">Usuarios-Alvo</span><span class="text-neutral-500 text-sm ml-2">- Personas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Defina personas concretas. Nao "empresas", mas "gerentes de projeto em empresas de 50-200 funcionarios".</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Personas guiam decisoes de UX, features e priorizacao. Construir para "todos" e construir para ninguem.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Personas, segmentacao, perfil de usuario, jobs-to-be-done, necessidades.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📦</span>
+            <div><span class="font-medium">Escopo do MVP</span><span class="text-neutral-500 text-sm ml-2">- IN vs OUT</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Liste explicitamente o que esta IN e OUT do MVP. Essa lista evita scope creep e alinha expectativas.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem lista explicita do que esta fora, tudo pode entrar. Scope creep mata projetos.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">MVP, escopo, IN/OUT, scope creep, priorizacao, trade-offs.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">⚠️</span>
+            <div><span class="font-medium">Restricoes e Premissas</span><span class="text-neutral-500 text-sm ml-2">- Limitacoes</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Documente limitacoes de orcamento, timeline, tecnologia. Premissas sao apostas - se mudarem, o projeto muda.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Restricoes definem o espaco de solucao. Premissas sao riscos - se uma premissa cair, voce precisa revalidar.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Restricoes, premissas, riscos, constraints, validacao de hipoteses.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">7</span>
+            <span class="text-lg">🤖</span>
+            <div><span class="font-medium">Como Usar com IA</span><span class="text-neutral-500 text-sm ml-2">- Prompt</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Use o prompt de geracao de Brief com seu LLM. Forneca contexto maximo. Itere. O Brief final passa pelo crivo humano.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">IA acelera a criacao, mas humano valida. O fluxo e: IA gera estrutura, humano refina e aprova.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Geracao assistida, iteracao, validacao humana, prompt engineering.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">8</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Quando Atualizar</span><span class="text-neutral-500 text-sm ml-2">- Versionamento</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Atualize quando premissas mudarem significativamente. Mantenha changelog. Versione o documento.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Documentos vivos precisam de gestao de versao. Sem isso, perde-se o historico de evolucao.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Versionamento, changelog, documento vivo, gestao de mudancas.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/project-brief.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-2.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.3 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.3</span>
+          <a href="templates/prd.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📊 PRD - Product Requirements Document</h3>
+        <p class="text-neutral-400 text-sm">Detalha requisitos funcionais, nao-funcionais, epicos e historias de usuario.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Do Brief ao PRD</span><span class="text-neutral-500 text-sm ml-2">- Transicao</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O PRD traduz a visao do Brief em requisitos executaveis. E mais detalhado, mais tecnico, mais proximo da implementacao.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A transicao Brief->PRD e onde visao vira especificacao. Erros aqui propagam para todo o projeto.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Especificacao, requisitos, traducao, detalhamento progressivo.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">✅</span>
+            <div><span class="font-medium">Requisitos Funcionais</span><span class="text-neutral-500 text-sm ml-2">- FR</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O que o sistema DEVE fazer. Use formato "O sistema deve [verbo] [objeto] [condicao]". Seja especifico e testavel.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">FRs sao a base de tudo. Cada feature, cada teste, cada validacao deriva de um FR.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Requisitos funcionais, comportamento, acoes, testabilidade, especificidade.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">⚙️</span>
+            <div><span class="font-medium">Requisitos Nao-Funcionais</span><span class="text-neutral-500 text-sm ml-2">- NFR</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como o sistema deve se comportar. Performance, seguranca, disponibilidade. As "-ilities" que definem qualidade.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">NFRs sao frequentemente esquecidos ate ser tarde demais. Performance ruim mata produtos bons.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">NFRs, qualidade, performance, seguranca, disponibilidade, escalabilidade.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📚</span>
+            <div><span class="font-medium">Epicos e Sequenciamento</span><span class="text-neutral-500 text-sm ml-2">- Ordem</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Epicos sao grandes blocos de trabalho sequenciais. Epico 1 sempre e fundacao (setup, CI/CD, auth basica).</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Ordem de epicos define dependencias. Construir feature antes de infra e receita para retrabalho.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Epicos, sequenciamento, dependencias, fundacao, incrementalidade.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📖</span>
+            <div><span class="font-medium">User Stories no PRD</span><span class="text-neutral-500 text-sm ml-2">- Formato</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Formato: Como [usuario], eu quero [acao], para que [beneficio]. Criterios de aceitacao sao OBRIGATORIOS.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Stories conectam requisitos a valor de usuario. Sem AC, nao ha definicao de done.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">User stories, criterios de aceitacao, valor, persona, formato padrao.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Priorizacao MoSCoW</span><span class="text-neutral-500 text-sm ml-2">- Must/Should/Could/Won't</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Must: sem isso nao lanca. Should: importante mas nao bloqueante. Could: nice to have. Won't: fora do escopo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Priorizacao clara evita discussoes infinitas. MoSCoW e simples e efetivo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">MoSCoW, priorizacao, trade-offs, escopo, MVP, releases.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/prd.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-3.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.4 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.4</span>
+          <a href="templates/architecture.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🏗️ Documento de Arquitetura</h3>
+        <p class="text-neutral-400 text-sm">Define stack tecnico, padroes arquiteturais, componentes, APIs e infraestrutura.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📐</span>
+            <div><span class="font-medium">Arquitetura como Blueprint</span><span class="text-neutral-500 text-sm ml-2">- Guia</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Este documento e o blueprint tecnico. Cada decisao de tecnologia, cada padrao esta aqui. E a fonte da verdade tecnica.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem arquitetura documentada, cada dev toma decisoes diferentes. Inconsistencia mata manutenibilidade.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Blueprint, fonte da verdade, decisoes tecnicas, consistencia, padronizacao.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Tech Stack Table</span><span class="text-neutral-500 text-sm ml-2">- Versoes</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Liste TODAS as tecnologias com versoes especificas. "Node.js 20.11.0 LTS" nao "Node.js". Versoes evitam surpresas.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">"Funciona na minha maquina" e causado por versoes diferentes. Documente tudo explicitamente.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Versionamento, reproducibilidade, stack, dependencias, LTS.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🧩</span>
+            <div><span class="font-medium">Padroes Arquiteturais</span><span class="text-neutral-500 text-sm ml-2">- Regras</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Documente padroes escolhidos: Repository Pattern, DI, CQRS, etc. Inclua justificativa. Sao LEI para a IA.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">IA so segue padroes se estiverem documentados. Sem isso, ela inventa solucoes inconsistentes.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Design patterns, arquitetura de software, DI, Repository, CQRS, Clean Architecture.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">💾</span>
+            <div><span class="font-medium">Modelos de Dados</span><span class="text-neutral-500 text-sm ml-2">- Entidades</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Defina entidades, atributos, relacionamentos. Use diagramas Mermaid. Guia a criacao de banco e APIs.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Modelo de dados errado no inicio e caro de corrigir depois. Defina bem antes de codar.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Modelagem, entidades, relacionamentos, ERD, Mermaid, schemas.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">🔌</span>
+            <div><span class="font-medium">API Specification</span><span class="text-neutral-500 text-sm ml-2">- OpenAPI</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Documente endpoints em OpenAPI/Swagger. Request/response schemas, codigos de erro. A IA usara isso para gerar codigo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">API bem documentada permite geracao de codigo, testes, e clientes automaticamente.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">OpenAPI, Swagger, REST, endpoints, schemas, contratos de API.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔒</span>
+            <div><span class="font-medium">Seguranca</span><span class="text-neutral-500 text-sm ml-2">- Obrigatorio</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Documente estrategias de validacao, autenticacao, autorizacao, gestao de secrets. Seguranca nao e opcional.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Seguranca pensada depois e seguranca fraca. Defina no inicio como parte da arquitetura.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Autenticacao, autorizacao, JWT, secrets, OWASP, validacao de input.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/architecture.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-4.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.5 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.5</span>
+          <a href="templates/user-story.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">📖 User Stories</h3>
+        <p class="text-neutral-400 text-sm">Template para historias de usuario com criterios de aceitacao e tracking de implementacao.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">Anatomia de uma Story</span><span class="text-neutral-500 text-sm ml-2">- Estrutura</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Status, Story (As a/I want/So that), Criterios de Aceitacao, Tarefas, Notas de Dev, Testes, Dev Agent Record, QA Results.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada secao tem proposito. Pular qualquer uma compromete rastreabilidade ou qualidade.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Estrutura de story, AC, tarefas, tracking, registro de implementacao.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">✅</span>
+            <div><span class="font-medium">Criterios de Aceitacao</span><span class="text-neutral-500 text-sm ml-2">- Contrato</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Sao o CONTRATO de done. Cada AC deve ser testavel. "Funciona bem" nao e AC. "Resposta em menos de 200ms" e AC.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">AC ambiguos geram debates infinitos sobre done. AC claros terminam discussoes.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Criterios de aceitacao, testabilidade, definicao de done, especificidade.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">📝</span>
+            <div><span class="font-medium">Tarefas e Subtarefas</span><span class="text-neutral-500 text-sm ml-2">- Breakdown</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Quebre a story em tarefas atomicas. Referencie qual AC cada tarefa atende. Facilita tracking e QA.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Tarefas atomicas permitem progresso mensuravel e facilitam code review focado.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Breakdown, atomicidade, rastreabilidade AC-tarefa, progresso incremental.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🤖</span>
+            <div><span class="font-medium">Dev Agent Record</span><span class="text-neutral-500 text-sm ml-2">- Auditoria</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Quando IA implementa, registre modelo usado, logs, notas de conclusao, arquivos modificados. Auditabilidade total.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem registro, nao se sabe qual modelo gerou qual codigo. Essencial para debug e melhoria de prompts.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Auditoria de IA, logging, rastreabilidade, modelo, arquivos modificados.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📏</span>
+            <div><span class="font-medium">Tamanho Ideal</span><span class="text-neutral-500 text-sm ml-2">- 2-4 horas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Uma story deve ser completavel em uma sessao (2-4 horas). Se for maior, quebre em stories menores.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Stories grandes demais perdem contexto e acumulam risco. Stories pequenas entregam valor rapido.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Tamanho de story, atomicidade, sessao de trabalho, feedback loop curto.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/user-story.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-5.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.6 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.6</span>
+          <a href="templates/qa-gate.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">✅ QA Gate - Checklist de Qualidade</h3>
+        <p class="text-neutral-400 text-sm">Checklist para validar que cada entrega atende aos padroes de qualidade.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🚪</span>
+            <div><span class="font-medium">O que e QA Gate</span><span class="text-neutral-500 text-sm ml-2">- Checkpoint</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Checkpoint que toda entrega deve passar antes de ser done. Sem QA Gate aprovado, nao ha merge.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">QA Gate e a ultima linha de defesa contra codigo ruim entrando em producao.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Quality gate, checkpoint, validacao, merge, bloqueio.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📋</span>
+            <div><span class="font-medium">Categorias de Validacao</span><span class="text-neutral-500 text-sm ml-2">- Areas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Codigo (lint, tests, types), Funcional (ACs atendidos), Seguranca (OWASP), UX (responsivo), e Performance (metricas).</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada categoria pega tipos diferentes de problemas. Cobrir todas garante qualidade holistica.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Categorias de QA, cobertura, qualidade holistica, areas de risco.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🧪</span>
+            <div><span class="font-medium">Testes Automatizados</span><span class="text-neutral-500 text-sm ml-2">- Cobertura</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Unitarios, integracao, E2E. Cobertura minima de 80%. Testes passando e pre-requisito de merge.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Testes automatizados sao a unica forma de escalar QA. Review manual nao escala.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Testes automatizados, cobertura, CI, unitarios, integracao, E2E.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Fluxo de Resolucao</span><span class="text-neutral-500 text-sm ml-2">- Retrabalho</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Se falhar no QA Gate, documente a falha, corrija, e submeta novamente. Loop ate passar.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Processo claro de correcao evita que problemas fiquem em limbo. Sempre ha proxima acao definida.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Fluxo de correcao, resubmissao, loop de qualidade, documentacao de falhas.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Metricas de Qualidade</span><span class="text-neutral-500 text-sm ml-2">- Tracking</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Track taxa de aprovacao, falhas por categoria, tempo medio para resolver. Use dados para melhorar processo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem metricas, nao ha como saber se QA esta melhorando ou piorando. Dados guiam decisoes.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Metricas de QA, taxa de aprovacao, tempo de resolucao, melhoria continua.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/qa-gate.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-6.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+    <!-- Modulo 6.7 -->
+    <div class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2">
+          <span class="text-rose-400 font-bold">6.7</span>
+          <a href="templates/prompts-ia.md" download class="px-3 py-1 bg-green-500/20 text-green-400 rounded-lg hover:bg-green-500/30 transition-colors text-sm font-medium">⬇️ Download Template</a>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">🤖 Prompts para IA</h3>
+        <p class="text-neutral-400 text-sm">Colecao de prompts testados para gerar cada tipo de documento do GIPM.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+            <span class="text-lg">🎯</span>
+            <div><span class="font-medium">Prompt para Project Brief</span><span class="text-neutral-500 text-sm ml-2">- Geracao</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Prompt estruturado que guia a IA a fazer perguntas e gerar um Brief completo seguindo o template GIPM.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Prompt bem construido extrai informacao que voce nem sabia que tinha. IA como entrevistador.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Prompt engineering, elicitacao, entrevista estruturada, geracao guiada.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+            <span class="text-lg">📊</span>
+            <div><span class="font-medium">Prompt para PRD</span><span class="text-neutral-500 text-sm ml-2">- Requisitos</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Prompt que transforma Brief em PRD detalhado com FRs, NFRs, epicos e stories formatados corretamente.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Conversao Brief->PRD e trabalho pesado. IA acelera drasticamente com prompt certo.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Conversao de documentos, detalhamento, formatacao, consistencia.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+            <span class="text-lg">🏗️</span>
+            <div><span class="font-medium">Prompt para Arquitetura</span><span class="text-neutral-500 text-sm ml-2">- Tecnico</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Prompt que gera documento de arquitetura com stack, padroes, diagramas Mermaid, e specs de API.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Arquitetura requer pensamento sistemico. Prompt ajuda a nao esquecer componentes criticos.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Geracao de arquitetura, diagramas, specs tecnicas, completude.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+            <span class="text-lg">📖</span>
+            <div><span class="font-medium">Prompt para Stories</span><span class="text-neutral-500 text-sm ml-2">- Atomicas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Prompt que gera stories atomicas com ACs testaveis, tarefas granulares, e secoes de tracking ja formatadas.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Stories bem escritas sao a base de implementacao com IA. Prompt garante consistencia.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Geracao de stories, atomicidade, ACs testaveis, formatacao padrao.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+            <span class="text-lg">💡</span>
+            <div><span class="font-medium">Dicas de Prompt Engineering</span><span class="text-neutral-500 text-sm ml-2">- Melhores praticas</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Tecnicas gerais: seja especifico, forneca exemplos, itere, use personas, defina formato de output desejado.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Prompt engineering e skill transferivel. Melhora resultados em qualquer uso de IA.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Especificidade, exemplos, iteracao, personas, formatacao de output.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="topic-item">
+          <button onclick="toggleTopic(this)" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left">
+            <span class="w-6 h-6 rounded-full bg-rose-500/20 text-rose-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+            <span class="text-lg">🔄</span>
+            <div><span class="font-medium">Fluxo Completo com Prompts</span><span class="text-neutral-500 text-sm ml-2">- End-to-end</span></div>
+          </button>
+          <div class="topic-explanation px-6 pb-4">
+            <div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+              <div><span class="text-rose-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como encadear prompts: Brief -> PRD -> Arquitetura -> Stories. Cada output alimenta proximo input.</p></div>
+              <div><span class="text-rose-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Visao end-to-end mostra como as pecas se conectam. Automacao maxima do fluxo documental.</p></div>
+              <div><span class="text-rose-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Encadeamento de prompts, fluxo documental, automacao, consistencia.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="templates/prompts-ia.md" download class="px-4 py-2 text-sm bg-green-600 hover:bg-green-500 text-white rounded-lg transition-colors">⬇️ Download Template</a>
+        <a href="modulo-6-7.html" class="px-4 py-2 text-sm bg-rose-600 hover:bg-rose-500 text-white rounded-lg transition-colors">📄 Ver Completo</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-dark-600 mt-16">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+        <div class="text-neutral-500 text-sm">
+          © 2024 GIPM Master - Metodo de Projetos com IA Governada
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm">INEMA.CLUB</a>
+          <a href="https://github.com/inematds/GIPM" target="_blank" class="text-neutral-400 hover:text-white text-sm">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const html = document.documentElement;
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+    function updateIcons() {
+      if (html.classList.contains('dark')) {
+        darkIcon.classList.add('hidden');
+        lightIcon.classList.remove('hidden');
+      } else {
+        darkIcon.classList.remove('hidden');
+        lightIcon.classList.add('hidden');
+      }
+    }
+
+    updateIcons();
+
+    themeToggle.addEventListener('click', () => {
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+      updateIcons();
+    });
+
+    if (localStorage.getItem('theme') === 'light') {
+      html.classList.remove('dark');
+      updateIcons();
+    }
+
+    function toggleTopic(button) {
+      const explanation = button.parentElement.querySelector('.topic-explanation');
+      explanation.classList.toggle('active');
+    }
+  </script>
+
+</body>
+</html>
