@@ -524,4 +524,4 @@ Use este documento junto com o PRD para implementar as stories. Cada desenvolved
 ---
 
 > **Gerado com GIPM - Metodo de Projetos com IA Governada**
-> https://github.com/inematds/GIPM
+> https://github.com/linnoff88-dev/GIPM

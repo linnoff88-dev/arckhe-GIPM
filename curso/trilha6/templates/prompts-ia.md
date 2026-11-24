@@ -500,4 +500,4 @@ FORMATO DE SAIDA:
 ---
 
 > **Gerado com GIPM - Metodo de Projetos com IA Governada**
-> https://github.com/inematds/GIPM
+> https://github.com/linnoff88-dev/GIPM

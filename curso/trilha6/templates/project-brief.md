@@ -197,4 +197,4 @@ Este Project Brief fornece o contexto completo para [Nome do Projeto]. Use este 
 ---
 
 > **Gerado com GIPM - Metodo de Projetos com IA Governada**
-> https://github.com/inematds/GIPM
+> https://github.com/linnoff88-dev/GIPM

@@ -4,7 +4,7 @@
 
 **Nome:** GIPM Master - Método de Projetos com IA Governada
 **Formato:** HTML estático no GitHub Pages
-**Link Externo:** INEMA.CLUB (sky-400)
+**Link Externo:** ARCKHÉ AI (sky-400)
 
 ### Configuração de Cores por Trilha
 
@@ -535,7 +535,7 @@ gipm-master/
 ## VERIFICAÇÃO
 
 Para validar a implementação:
-1. Cada página deve ter navigation com INEMA.CLUB
+1. Cada página deve ter navigation com ARCKHÉ AI
 2. Cada módulo deve ter 6-8 tópicos com círculos numerados
 3. Cada tópico deve ter 3 seções: O que é, Por que aprender, Conceitos-chave
 4. Cores devem corresponder à trilha

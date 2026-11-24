@@ -50,7 +50,7 @@ GIPM Master
 | Cor | Codigo | Uso |
 |-----|--------|-----|
 | Primary (Yellow) | `#FACC15` | Logo, CTAs, destaques |
-| Sky | `text-sky-400` | Link INEMA.CLUB |
+| Sky | `text-sky-400` | Link ARCKHÉ AI |
 | Neutral | `text-neutral-300/400` | Texto secundario |
 
 ---
@@ -60,7 +60,7 @@ GIPM Master
 **OBRIGATORIO em TODAS as paginas:**
 
 1. Logo: `🎓 GIPM Master` (yellow-400)
-2. Link: `INEMA.CLUB` (sky-400)
+2. Link: `ARCKHÉ AI` (sky-400)
 3. Trilhas: Fundamentos | O Metodo | Avancado | NotebookLMX | Pratico
 4. Theme Toggle: dark/light
 
@@ -68,14 +68,14 @@ GIPM Master
 <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-14">
-      <!-- Logo + INEMA.CLUB -->
+      <!-- Logo + ARCKHÉ AI -->
       <div class="flex items-center space-x-4">
         <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
           <span class="text-2xl">🎓</span>
           <span class="font-bold text-lg hidden sm:inline">GIPM Master</span>
         </a>
         <span class="text-neutral-600">|</span>
-        <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        <a href="https://ARCKHÉ AI" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">ARCKHÉ AI</a>
       </div>
 
       <!-- Trilhas + Theme Toggle -->
@@ -94,7 +94,7 @@ GIPM Master
 
 ```
 TRILHA INDEX
-├── Navigation Global (com INEMA.CLUB)
+├── Navigation Global (com ARCKHÉ AI)
 ├── Header
 │   └── Badge da trilha (TRILHA X)
 │   └── Titulo + emoji
@@ -123,7 +123,7 @@ TRILHA INDEX
 
 ```
 MODULO COMPLETO
-├── Navigation Global (com INEMA.CLUB)
+├── Navigation Global (com ARCKHÉ AI)
 ├── Breadcrumb (Inicio / Trilha X / Modulo X.X)
 ├── Header
 │   └── Badge (MODULO X.X)
@@ -425,7 +425,7 @@ function toggleTopic(button) {
 ### Antes de Publicar
 
 **Estrutura:**
-- [ ] Navigation com INEMA.CLUB (sky-400)
+- [ ] Navigation com ARCKHÉ AI (sky-400)
 - [ ] Trilhas com nomes completos (Fundamentos, O Metodo, Avancado, NotebookLMX, Pratico)
 - [ ] Header completo (badge, titulo, descricao)
 - [ ] Stats banner com 4 metricas
