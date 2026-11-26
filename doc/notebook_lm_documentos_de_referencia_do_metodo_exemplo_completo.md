@@ -3,17 +3,17 @@
 
 Este arquivo consolida **dois documentos fundamentais** que transformam o projeto *NotebookLM Reimagined* em uma **Reference Implementation oficial do Método de Projetos com IA – v1.2**.
 
-Eles não descrevem funcionalidades. Eles explicam **por que o projeto foi construído desta forma** e **como ele materializa o método**.
+Eles nêo descrevem funcionalidades. Eles explicam **por que o projeto foi construído desta forma** e **como ele materializa o método**.
 
 ---
 
 # DOCUMENTO 1
 ## `00_METHOD_MAPPING.md`
-### Mapeamento do Método → Implementação
+### Mapeamento do Método → Implementaçêo
 
 ### Propósito
 
-Este documento demonstra como os princípios do **Método de Projetos com IA v1.2** são aplicados concretamente no NotebookLM Reimagined.
+Este documento demonstra como os princípios do **Método de Projetos com IA v1.2** sêo aplicados concretamente no NotebookLM Reimagined.
 
 O objetivo é pedagógico e auditável: permitir que qualquer pessoa entenda **onde** e **como** cada princípio do método se manifesta no sistema real.
 
@@ -25,8 +25,8 @@ O objetivo é pedagógico e auditável: permitir que qualquer pessoa entenda **o
 |--------------------|----------------------------|
 | API-first | Todas as capacidades expostas via FastAPI (`/notebooks`, `/sources`, `/chat`, `/studio/*`) |
 | Backend orquestra | FastAPI controla fluxo, validações e estados |
-| IA não controla fluxo | Gemini é chamado apenas como serviço cognitivo |
-| Modularidade | IA, banco, vídeo e TTS são serviços substituíveis |
+| IA nêo controla fluxo | Gemini é chamado apenas como serviço cognitivo |
+| Modularidade | IA, banco, vídeo e TTS sêo serviços substituíveis |
 
 ---
 
@@ -34,7 +34,7 @@ O objetivo é pedagógico e auditável: permitir que qualquer pessoa entenda **o
 
 **Princípio:** IA gera estrutura, sistema gera artefatos.
 
-**Implementação:**
+**Implementaçêo:**
 - Gemini gera JSON, roteiros, outlines e scripts
 - O browser e o backend transformam esses dados em `.pptx`, `.docx`, `.mp3`, `.mp4`
 
@@ -46,26 +46,26 @@ Nenhum arquivo final é gerado diretamente pela IA.
 
 Todo endpoint segue o mesmo pipeline:
 
-1. Validação de acesso
+1. Validaçêo de acesso
 2. Coleta de fontes
-3. Normalização de conteúdo
-4. Injeção de persona e preferências
+3. Normalizaçêo de conteúdo
+4. Injeçêo de persona e preferências
 5. Chamada à IA (estrutura)
 6. Persistência em banco
-7. Materialização de saída
+7. Materializaçêo de saída
 8. Retorno ao frontend
 
 ---
 
 ### 4. Governança Cognitiva
 
-| Elemento | Implementação |
+| Elemento | Implementaçêo |
 |--------|---------------|
 | Personas | `persona_utils.py` |
 | Preferências | `settings` persistidos por notebook |
-| Injeção automática | System prompt em todas as chamadas |
+| Injeçêo automática | System prompt em todas as chamadas |
 
-Personas não são UX. São **políticas de pensamento aplicadas globalmente**.
+Personas nêo sêo UX. Sêo **políticas de pensamento aplicadas globalmente**.
 
 ---
 
@@ -108,17 +108,17 @@ Este documento explica como o NotebookLM implementa **controle explícito sobre 
 Governança cognitiva é o conjunto de regras que define:
 - como a IA deve raciocinar
 - como deve responder
-- o que pode ou não decidir
+- o que pode ou nêo decidir
 
-No NotebookLM, isso é tratado como **camada de sistema**, não como feature opcional.
+No NotebookLM, isso é tratado como **camada de sistema**, nêo como feature opcional.
 
 ---
 
-### 2. Separação de Camadas
+### 2. Separaçêo de Camadas
 
 O sistema opera com três camadas claras:
 
-1. **Decisão Humana**
+1. **Decisêo Humana**
    - define objetivos
    - escolhe profundidade
    - estabelece limites
@@ -130,7 +130,7 @@ O sistema opera com três camadas claras:
 
 3. **IA (Gemini)**
    - analisa conteúdo
-   - estrutura informação
+   - estrutura informaçêo
    - sintetiza respostas
 
 A IA nunca define objetivos nem caminhos estratégicos.
@@ -147,7 +147,7 @@ Exemplos de personas:
 
 Cada persona é uma **política cognitiva persistente**, aplicada automaticamente em toda chamada de IA.
 
-O usuário não precisa reescrever prompts.
+O usuário nêo precisa reescrever prompts.
 
 ---
 
@@ -156,10 +156,10 @@ O usuário não precisa reescrever prompts.
 Preferências controlam:
 - tamanho da resposta
 - tom
-- estilo de citação
+- estilo de citaçêo
 - uso de exemplos
 
-Elas são:
+Elas sêo:
 - persistidas no banco
 - reaplicadas em toda chamada
 - independentes do modelo usado
@@ -170,7 +170,7 @@ Elas são:
 
 No NotebookLM:
 
-> Simulação, placeholders ou dados fictícios são considerados **falha do sistema**, não sucesso parcial.
+> Simulaçêo, placeholders ou dados fictícios sêo considerados **falha do sistema**, nêo sucesso parcial.
 
 Todo output deve ser rastreável, citável e persistido.
 
@@ -192,11 +192,11 @@ A IA deixa de ser imprevisível e passa a ser **governada**.
 
 Com estes dois documentos, o NotebookLM Reimagined passa a ser:
 
-- uma implementação funcional
+- uma implementaçêo funcional
 - um **exemplo completo do Método v1.2**
 - um material pedagógico reutilizável
 
-Ele não apenas funciona — ele **ensina como foi construído e por quê**.
+Ele nêo apenas funciona — ele **ensina como foi construído e por quê**.
 
 ---
 

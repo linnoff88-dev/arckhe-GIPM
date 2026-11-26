@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-GIPM (Método de Criação de Projetos com IA) is a methodology framework for building AI-driven projects with governance, auditability, and scalability. The project defines how to conceive, build, govern, and evolve projects where AI is a controlled component rather than the decision-maker.
+GIPM (Método de Criaçêo de Projetos com IA) is a methodology framework for building AI-driven projects with governance, auditability, and scalability. The project defines how to conceive, build, govern, and evolve projects where AI is a controlled component rather than the decision-maker.
 
 ## Core Methodology Principles
 

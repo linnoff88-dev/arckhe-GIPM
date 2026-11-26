@@ -1,5 +1,5 @@
-# Método de Criação de Projetos com IA
-## Versão 1.2 (Atualizada)
+# Método de Criaçêo de Projetos com IA
+## Versêo 1.2 (Atualizada)
 
 ---
 
@@ -7,7 +7,7 @@
 
 Este método define como **conceber, construir, governar e evoluir** projetos com IA de forma controlada, auditável e escalável.
 
-> O objetivo não é usar IA para criar sistemas, mas criar sistemas que **governam como a IA pensa, age e gera valor**.
+> O objetivo nêo é usar IA para criar sistemas, mas criar sistemas que **governam como a IA pensa, age e gera valor**.
 
 ---
 
@@ -21,12 +21,12 @@ Este método define como **conceber, construir, governar e evoluir** projetos co
 
 ---
 
-## 3. Novidades da Versão 1.2
+## 3. Novidades da Versêo 1.2
 
-A versão 1.2 incorpora aprendizados de implementações reais (ex.: NotebookLM Reimagined).
+A versêo 1.2 incorpora aprendizados de implementações reais (ex.: NotebookLM Reimagined).
 
 ### Novos pilares:
-- Camada explícita de **Decisão Humana**
+- Camada explícita de **Decisêo Humana**
 - **Governança Cognitiva** formalizada
 - **Níveis de Profundidade** (Depth Levels)
 - **Governança de Custos**
@@ -34,9 +34,9 @@ A versão 1.2 incorpora aprendizados de implementações reais (ex.: NotebookLM 
 
 ---
 
-## 4. Camadas do Sistema (Formalização)
+## 4. Camadas do Sistema (Formalizaçêo)
 
-### 4.1 Decisão Humana
+### 4.1 Decisêo Humana
 Define:
 - objetivos
 - limites
@@ -44,12 +44,12 @@ Define:
 
 Nunca delegada à IA.
 
-### 4.2 Sistema (Orquestração)
+### 4.2 Sistema (Orquestraçêo)
 - valida estados
 - controla fluxo
 - aplica regras
 
-### 4.3 IA (Cognição)
+### 4.3 IA (Cogniçêo)
 - analisa
 - estrutura
 - sintetiza
@@ -72,21 +72,21 @@ O pipeline é o mesmo; mudam parâmetros e rigor.
 
 ## 6. Pipeline Universal (inalterado)
 
-1. Solicitação do usuário
-2. Validação de acesso
+1. Solicitaçêo do usuário
+2. Validaçêo de acesso
 3. Coleta de contexto
-4. Normalização
-5. Injeção de persona e preferências
+4. Normalizaçêo
+5. Injeçêo de persona e preferências
 6. Chamada à IA (estrutura)
 7. Persistência
-8. Materialização
+8. Materializaçêo
 9. Retorno
 
 ---
 
 ## 7. Governança Cognitiva
 
-Personas são **políticas de pensamento**, não estilos.
+Personas sêo **políticas de pensamento**, nêo estilos.
 
 - centralizadas no backend
 - persistentes
@@ -98,7 +98,7 @@ Personas são **políticas de pensamento**, não estilos.
 
 Custos passam a ser métrica de qualidade:
 
-- custo por execução
+- custo por execuçêo
 - custo por entrega
 - custo por usuário
 
@@ -110,21 +110,21 @@ Toda chamada de IA deve registrar custo.
 
 O método adota projetos exemplares para:
 - ensino
-- validação
+- validaçêo
 - auditoria
 
-Eles demonstram o método, não o substituem.
+Eles demonstram o método, nêo o substituem.
 
 ---
 
-## 10. Conclusão
+## 10. Conclusêo
 
-A versão 1.2 consolida o método como um **framework institucional e pedagógico**, pronto para:
+A versêo 1.2 consolida o método como um **framework institucional e pedagógico**, pronto para:
 - setor público
-- educação
+- educaçêo
 - pesquisa
 - produtos digitais
 
 ---
 
-**Fim do Método – Versão 1.2**
+**Fim do Método – Versêo 1.2**
